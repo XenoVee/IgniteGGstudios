@@ -1,23 +1,28 @@
 // This first example shows how to move using Input System Package (New)
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Example : MonoBehaviour
 {
-	[SerializeField] private float	playerSpeed = 5.0f;
-	[SerializeField] private float	jumpHeight = 1.5f;
-	[SerializeField] private float	gravityValue = -9.81f;
-	
-	[SerializeField] private CharacterController controller;
-	[SerializeField] private Collider collide;
+	public float				playerSpeed = 5.0f;
+	public float				jumpHeight = 1.5f;
+	public float				gravityValue = -9.81f;
+	public float				mouseSensitivity = 1;
 
-	[SerializeField] bool grounded;
-	[SerializeField] private Vector3 playerVelocity;
-	public InputActionReference moveAction; // expects Vector2
-	public InputActionReference jumpAction; // expects Button
+	[SerializeField] private	CharacterController controller;
+	[SerializeField] private	Collider collide;
+	[SerializeField] Transform	cameraTransform;
+	[SerializeField] private	InputActionReference moveAction;
+	[SerializeField] private	InputActionReference jumpAction;
 
-	private float	playerBoundExtent;
+	private Vector3				playerVelocity;
+	private float				playerBoundExtent;
+	private bool				grounded;
+	private float				rotY;
+	private float				rotX;
+
 
 	private void Start()
 	{
@@ -27,34 +32,45 @@ public class Example : MonoBehaviour
 	void Update()
 	{
 		grounded = isGrounded();
-		
+
 		if (grounded)
 		{
-			playerVelocity.y = 0;
+			// Jump (or not)
+			if (jumpAction.action.triggered)
+			{
+				playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+			}
+			else if (playerVelocity.y < 0)
+			{
+				playerVelocity.y = 0;
+			}
 		}
-		else if (!grounded)
+		else
 		{
-			Debug.Log("in the air");
 			//Apply gravity
 			playerVelocity.y += gravityValue * Time.deltaTime;
 		}
 
 		// Read input
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
-		Vector3 move = new Vector3(input.x, 0, input.y);
+
+		float moveX = input.x;
+		float moveY = input.y;
+		Vector3 move = transform.right * moveX + transform.forward * moveY;
 		move = Vector3.ClampMagnitude(move, 1f);
-
-		// Jump
-		if (jumpAction.action.triggered && grounded)
-		{
-			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-		}
-
-
 
 		// Combine horizontal and vertical movement
 		Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
 		controller.Move(finalMove * Time.deltaTime);
+
+		rotX += Input.GetAxis("Mouse X") * mouseSensitivity;
+		rotY -= (Input.GetAxis("Mouse Y") * mouseSensitivity);
+
+		rotY = Mathf.Clamp(rotY, -90, 90);
+
+
+		transform.eulerAngles = new (0, rotX, 0);
+		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
 	}
 
 	bool isGrounded()
