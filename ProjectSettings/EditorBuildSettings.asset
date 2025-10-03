@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dani's Scene.unity
+    path: Assets/Scenes/Werk Scenes/Dani's Scene.unity
     guid: 0ca1fdb4b0d755743baab72ee17c2016
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Game Scenes/Main world(begin).unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Mees Scene.unity
+    path: Assets/Scenes/Werk Scenes/Mees Scene.unity
     guid: 68d9918bb9e22fd40b79dcbc95d14268
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
