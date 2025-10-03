@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Portal : MonoBehaviour
 {
-    public int Lvl = 1;
+    public static int Lvl = 1;
     public GameObject UI;
 
     public Rigidbody rb;
@@ -45,5 +45,5 @@ public class Portal : MonoBehaviour
         }
 
 
-    
+            
 }

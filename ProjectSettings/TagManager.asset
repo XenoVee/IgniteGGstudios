@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Portal
   - Heart
+  - Jumppad
   layers:
   - Default
   - TransparentFX
