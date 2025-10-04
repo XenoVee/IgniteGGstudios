@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4482575447704772293}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0.521, z: -0.187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  jumpHeight: 7
-  gravityValue: -30
-  mouseSensitivity: 2
+  jumpHeight: 2
+  gravityValue: -50
+  mouseSensitivity: 7.5
   controller: {fileID: 3986651249747509042}
   collide: {fileID: 3398136301982214315}
   cameraTransform: {fileID: 8305412633372614030}
