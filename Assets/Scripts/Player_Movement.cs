@@ -30,7 +30,24 @@ public class Example : MonoBehaviour
 	{
 		playerBoundExtent = collide.bounds.extents.y;
 		
-	 originalJumpHeight = jumpHeight;
+		originalJumpHeight = jumpHeight;
+	}
+
+	private void Awake()
+	{
+		controller = gameObject.AddComponent<CharacterController>();
+	}
+
+	private void OnEnable()
+	{
+		moveAction.action.Enable();
+		jumpAction.action.Enable();
+	}
+
+	private void OnDisable()
+	{
+		moveAction.action.Disable();
+		jumpAction.action.Disable();
 	}
 
 	void Update()
