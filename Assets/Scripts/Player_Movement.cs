@@ -6,12 +6,11 @@ using UnityEngine.InputSystem;
 
 public class Example : MonoBehaviour
 {
-	public float playerSpeed = 5.0f;
-	public float jumpHeight = 1.5f;
-	public float gravityValue = -9.81f;
-	public float mouseSensitivity = 1;
-	public float jumpBoost;
-	float originalJumpHeight;
+	public float	playerSpeed = 5.0f;
+	public float	jumpHeight = 1.5f;
+	public float	gravityValue = -9.81f;
+	public float	mouseSensitivity = 1;
+	public float	jumpBoost;
 
 	[SerializeField] private CharacterController controller;
 	[SerializeField] private Collider collide;
@@ -19,11 +18,13 @@ public class Example : MonoBehaviour
 	[SerializeField] private InputActionReference moveAction;
 	[SerializeField] private InputActionReference jumpAction;
 
-	private Vector3 playerVelocity;
-	private float playerBoundExtent;
-	private bool grounded;
-	private float rotY;
-	private float rotX;
+	private Vector3	playerVelocity;
+	private float	playerBoundExtent;
+	private bool	grounded;
+	private float	rotY;
+	private float	rotX;
+	float			originalJumpHeight;
+	public Vector2 input;
 
 
 	private void Start()
@@ -31,11 +32,6 @@ public class Example : MonoBehaviour
 		playerBoundExtent = collide.bounds.extents.y;
 		
 		originalJumpHeight = jumpHeight;
-	}
-
-	private void Awake()
-	{
-		controller = gameObject.AddComponent<CharacterController>();
 	}
 
 	private void OnEnable()
@@ -73,7 +69,7 @@ public class Example : MonoBehaviour
 		}
 
 		// Read input
-		Vector2 input = moveAction.action.ReadValue<Vector2>();
+		input = moveAction.action.ReadValue<Vector2>();
 
 		float moveX = input.x;
 		float moveY = input.y;
