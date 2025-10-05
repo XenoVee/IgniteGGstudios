@@ -6,27 +6,31 @@ using UnityEngine.InputSystem;
 
 public class Example : MonoBehaviour
 {
-	public float				playerSpeed = 5.0f;
-	public float				jumpHeight = 1.5f;
-	public float				gravityValue = -9.81f;
-	public float				mouseSensitivity = 1;
+	public float playerSpeed = 5.0f;
+	public float jumpHeight = 1.5f;
+	public float gravityValue = -9.81f;
+	public float mouseSensitivity = 1;
+	public float jumpBoost;
+	float originalJumpHeight;
 
-	[SerializeField] private	CharacterController controller;
-	[SerializeField] private	Collider collide;
-	[SerializeField] Transform	cameraTransform;
-	[SerializeField] private	InputActionReference moveAction;
-	[SerializeField] private	InputActionReference jumpAction;
+	[SerializeField] private CharacterController controller;
+	[SerializeField] private Collider collide;
+	[SerializeField] Transform cameraTransform;
+	[SerializeField] private InputActionReference moveAction;
+	[SerializeField] private InputActionReference jumpAction;
 
-	private Vector3				playerVelocity;
-	private float				playerBoundExtent;
-	private bool				grounded;
-	private float				rotY;
-	private float				rotX;
+	private Vector3 playerVelocity;
+	private float playerBoundExtent;
+	private bool grounded;
+	private float rotY;
+	private float rotX;
 
 
 	private void Start()
 	{
 		playerBoundExtent = collide.bounds.extents.y;
+		
+	 originalJumpHeight = jumpHeight;
 	}
 
 	void Update()
@@ -69,12 +73,27 @@ public class Example : MonoBehaviour
 		rotY = Mathf.Clamp(rotY, -90, 90);
 
 
-		transform.eulerAngles = new (0, rotX, 0);
+		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
 	}
 
 	bool isGrounded()
 	{
 		return (Physics.Raycast(transform.position, -Vector3.up, collide.bounds.extents.y + 0.2f));
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Jumppad"))
+		{
+			jumpHeight += jumpBoost;
+		}
+	}
+	void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.CompareTag("Jumppad"))
+		{
+			jumpHeight = originalJumpHeight;
+		}
 	}
 }

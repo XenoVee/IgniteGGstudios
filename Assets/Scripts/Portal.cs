@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Portal : MonoBehaviour
 {
-    public static int Lvl = 1;
+    public string Lvl;
     public GameObject UI;
 
     public Rigidbody rb;
@@ -21,7 +21,6 @@ public class Portal : MonoBehaviour
             {
                 Debug.Log("E pressed");
                 SceneManager.LoadScene(Lvl);
-                Lvl += 1;
 
             }
         }
@@ -31,7 +30,7 @@ public class Portal : MonoBehaviour
             if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
             {
                 SceneManager.LoadScene(Lvl);
-                Lvl += 1;
+                
             }
 
             if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
