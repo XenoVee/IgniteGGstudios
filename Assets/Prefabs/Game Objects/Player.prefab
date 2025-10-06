@@ -291,9 +291,9 @@ MonoBehaviour:
   jumpHeight: 2
   gravityValue: -50
   mouseSensitivity: 7.5
-  jumpBoost: 0
-  CoyoteTime: 0
-  CoyoteTracker: 0
+  jumpBoost: 5
+  CoyoteTime: 0.15
+  playerVelocity: {x: 0, y: 0, z: 0}
   controller: {fileID: 3986651249747509042}
   collide: {fileID: 3398136301982214315}
   cameraTransform: {fileID: 8305412633372614030}

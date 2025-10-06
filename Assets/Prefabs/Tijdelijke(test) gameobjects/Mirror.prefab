@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3919380160556271478}
   - component: {fileID: 1158111515845009535}
   - component: {fileID: 144002294270156406}
-  - component: {fileID: 7654567150614987453}
+  - component: {fileID: 4575621709411912243}
+  - component: {fileID: 1429227615808272111}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Portal
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845376438506211645}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5575027, y: -0.6995584, z: -248.39459}
   m_LocalScale: {x: 2, y: 4, z: 0.1}
   m_ConstrainProportionsScale: 0
@@ -122,10 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c363987cda5c154bba5681c8187476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lvl: 
+  Lvl: Nature World
   UI: {fileID: 0}
   rb: {fileID: 0}
---- !u!65 &7654567150614987453
+--- !u!65 &4575621709411912243
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,5 +145,19 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.2309072}
+  m_Center: {x: 1.6008986e-11, y: 0, z: 1.257601}
+--- !u!114 &1429227615808272111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845376438506211645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de20741fee0995a42a7a55fa7f52bd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  amplitude: 0.1
