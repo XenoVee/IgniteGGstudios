@@ -19,29 +19,35 @@ public class Portal : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("E pressed");
                 SceneManager.LoadScene(Lvl);
 
             }
         }
     }
-        void OnTriggerEnter(Collider touch)
+    void OnTriggerEnter(Collider touch)
+    {
+        if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
         {
-            if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
-            {
-                SceneManager.LoadScene(Lvl);
-                
-            }
-
-            if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
-            {
-
-                UI.SetActive(true);
-                in_range = true;
-            }
-            else { UI.SetActive(false); }
+            SceneManager.LoadScene(Lvl);
 
         }
+
+        if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
+        {
+
+            UI.SetActive(true);
+            in_range = true;
+        }
+
+    }
+    void OnTriggerExit(Collider touch)
+    {
+        if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
+        {
+            UI.SetActive(false);
+            in_range = false;
+        }
+    }
 
 
             
