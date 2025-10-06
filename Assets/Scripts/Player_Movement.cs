@@ -13,12 +13,12 @@ public class Example : MonoBehaviour
 	public float	mouseSensitivity = 1;
 	public float	jumpBoost;
 	public float	CoyoteTime;
+	public float	rotY;
+	public float	rotX;
 
 	// Private Variables (AFBLIJVEN!) 
-	[SerializeField] private Vector3	playerVelocity;
+	private Vector3	playerVelocity;
 	private bool	grounded;
-	private float	rotY;
-	private float	rotX;
 	private float	originalJumpHeight;
 	private float	airTime;
 	private bool	canJump;
@@ -50,9 +50,6 @@ public class Example : MonoBehaviour
 	void Update()
 	{
 		grounded = isGrounded();
-
-		
-
 		if (grounded)
 		{
 			airTime = 0;
