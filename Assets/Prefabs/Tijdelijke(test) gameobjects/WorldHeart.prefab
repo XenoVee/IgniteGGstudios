@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5707912558189642511}
   - component: {fileID: 3714332825291517214}
   - component: {fileID: 4327808762493257907}
-  - component: {fileID: 4425391954373889782}
+  - component: {fileID: 64542839834884035}
   m_Layer: 0
   m_Name: WorldHeart
   m_TagString: Heart
@@ -104,8 +104,8 @@ MonoBehaviour:
   Lvl: Mees Scene
   UI: {fileID: 8009715133051516443}
   rb: {fileID: 0}
---- !u!65 &4425391954373889782
-BoxCollider:
+--- !u!136 &64542839834884035
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,8 +122,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4, y: 50, z: 4}
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 11.35563
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7618590786860937083
 GameObject:
