@@ -1,21 +1,29 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 public class Jumppad : MonoBehaviour
 {
+    public Player_Movement PlayerMovement;
     public Vector3 jump;
     public float jumpBoost = 10.0f;
     void Start()
     { 
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
     public Rigidbody rb;
-    private void OnTriggerEnter(Collider pad)
+    void OnTriggerEnter(Collider other)
     {
-     if(pad.CompareTag("Jumppad"))
+        if (other.gameObject.CompareTag("Player"))
         {
-
-            rb.AddForce(jump * jumpBoost, ForceMode.Impulse);
-        }      
+            PlayerMovement.jumpHeight += jumpBoost;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerMovement.jumpHeight = PlayerMovement.originalJumpHeight;
+        }
     }
 }
+
