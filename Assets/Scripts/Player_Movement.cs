@@ -15,9 +15,10 @@ public class Example : MonoBehaviour
 	public float	CoyoteTime;
 	public float	rotY;
 	public float	rotX;
+	public bool mouseLock = true;		
 
-	// Private Variables (AFBLIJVEN!) 
-	private Vector3	playerVelocity;
+    // Private Variables (AFBLIJVEN!) 
+    private Vector3	playerVelocity;
 	private bool	grounded;
 	private float	originalJumpHeight;
 	private float	airTime;
@@ -95,7 +96,21 @@ public class Example : MonoBehaviour
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
-	}
+		if (Input.GetKey(KeyCode.Escape))
+		{
+			mouseLock = !mouseLock;
+        }
+		if (!mouseLock)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
 
 	bool isGrounded()
 	{
