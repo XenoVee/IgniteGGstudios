@@ -91,8 +91,8 @@ public class Example : MonoBehaviour
 		controller.Move(finalMove * Time.deltaTime);
 
 		// Read mouse movement and rotate camera
-		rotX += Input.GetAxis("Mouse X") * mouseSensitivity;
-		rotY -= (Input.GetAxis("Mouse Y") * mouseSensitivity);
+		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+		rotY -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
