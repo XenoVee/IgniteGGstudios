@@ -18,7 +18,9 @@ public class Example : MonoBehaviour
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;
-	private bool	grounded;
+	[SerializeField] private bool	grounded;
+	public	float	distancetoground;	
+
 	private float	originalJumpHeight;
 	private float	airTime;
 	private bool	canJump;
@@ -50,7 +52,8 @@ public class Example : MonoBehaviour
 	void Update()
 	{
 		grounded = isGrounded();
-		if (grounded)
+		//distancetoground = distanceToGround();
+		if (isGrounded())
 		{
 			airTime = 0;
 			canJump = true;
@@ -88,6 +91,10 @@ public class Example : MonoBehaviour
 		// Combine horizontal and vertical movement
 		Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
 		controller.Move(finalMove * Time.deltaTime);
+		//if (!grounded && distancetoground < 0.3)
+		//{
+		//	controller.Move(new(0, -distancetoground, 0));
+		//}
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -97,9 +104,17 @@ public class Example : MonoBehaviour
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
 	}
 
+	float distanceToGround()
+	{
+		RaycastHit hit;
+		Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, 500);
+		return (hit.distance);
+	}
+
 	bool isGrounded()
 	{
-		return (Physics.Raycast(transform.position, -Vector3.up, collide.bounds.extents.y + 0.2f));
+		RaycastHit  hit;
+		return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.1f));
 	}
 
 	void OnTriggerEnter(Collider other)
