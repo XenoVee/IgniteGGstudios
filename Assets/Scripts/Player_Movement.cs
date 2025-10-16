@@ -4,33 +4,34 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Example : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {
 	[Header("Player Control variables")]
-	public float	playerSpeed = 5.0f;
-	public float	jumpHeight = 1.5f;
-	public float	gravityValue = -9.81f;
-	public float	mouseSensitivity = 1;
-	public float	jumpBoost;
-	public float	CoyoteTime;
-	public float	rotY;
-	public float	rotX;
+	public float playerSpeed = 5.0f;
+	public float jumpHeight = 1.5f;
+	public float gravityValue = -9.81f;
+	public float mouseSensitivity = 1;
+	public float jumpBoost;
+	public float CoyoteTime;
+	public float rotY;
+	public float rotX;
+	public bool mouseLock = true;
+    public float originalJumpHeight;
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;
 	[SerializeField] private bool	grounded;
 	public	float	distancetoground;	
 
-	private float	originalJumpHeight;
 	private float	airTime;
 	private bool	canJump;
 
 	[Header("Components")]
-	[SerializeField] private CharacterController	controller;
-	[SerializeField] private Collider				collide;
-	[SerializeField] private Transform				cameraTransform;
-	[SerializeField] private InputActionReference	moveAction;
-	[SerializeField] private InputActionReference	jumpAction;
+	[SerializeField] private CharacterController controller;
+	[SerializeField] private Collider collide;
+	[SerializeField] private Transform cameraTransform;
+	[SerializeField] private InputActionReference moveAction;
+	[SerializeField] private InputActionReference jumpAction;
 	private void Start()
 	{
 		originalJumpHeight = jumpHeight;
@@ -72,7 +73,7 @@ public class Example : MonoBehaviour
 			//Apply gravity
 			playerVelocity.y += gravityValue * Time.deltaTime;
 		}
-		
+
 		// Jump (or not)
 		if (jumpAction.action.triggered && canJump)
 		{
@@ -97,11 +98,25 @@ public class Example : MonoBehaviour
 		//}
 
 		// Read mouse movement and rotate camera
-		rotX += Input.GetAxis("Mouse X") * mouseSensitivity;
-		rotY -= (Input.GetAxis("Mouse Y") * mouseSensitivity);
+		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+		rotY -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
+		if (Input.GetKey(KeyCode.Escape))
+		{
+			mouseLock = !mouseLock;
+		}
+		if (!mouseLock)
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+		else
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 
 	float distanceToGround()
@@ -117,18 +132,4 @@ public class Example : MonoBehaviour
 		return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.1f));
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.CompareTag("Jumppad"))
-		{
-			jumpHeight += jumpBoost;
-		}
-	}
-	void OnTriggerExit(Collider other)
-	{
-		if (other.gameObject.CompareTag("Jumppad"))
-		{
-			jumpHeight = originalJumpHeight;
-		}
-	}
 }
