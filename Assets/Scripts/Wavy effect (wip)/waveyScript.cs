@@ -1,20 +1,21 @@
 using UnityEngine;
 
-public class testscript : MonoBehaviour
+public class waveyScript : MonoBehaviour
 {
 
     public Material mat;
+    public float speed;
 
-    public float waveNumber;
-    public float waveLength;
 
     void Update()
-    {
-        Shader.SetGlobalFloat("_waveLength", waveNumber);
-        Shader.SetGlobalFloat("_waveNumber", waveLength);
+    {if (mat != null)
+        {
+            mat.SetFloat("_shift", Time.time * speed);
+            Debug.Log("Script is updating! Shift is: " + (Time.time * speed));
+        }
     }
 
-    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    private void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
         Graphics.Blit(src, dest, mat);
     }

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: wavey
-  m_Shader: {fileID: 4800000, guid: 40ae900ec8a95164f914a4555b22f1a0, type: 3}
+  m_Shader: {fileID: 4800000, guid: e573c9fc22ad9d647b90edd119a6fb0b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -113,6 +113,9 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _amplitude: 0.05
+    - _frequency: 4
+    - _shift: 31
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
