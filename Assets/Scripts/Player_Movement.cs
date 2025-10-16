@@ -7,16 +7,16 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour
 {
 	[Header("Player Control variables")]
-	public float playerSpeed = 5.0f;
-	public float jumpHeight = 1.5f;
-	public float gravityValue = -9.81f;
-	public float mouseSensitivity = 1;
-	public float jumpBoost;
-	public float CoyoteTime;
-	public float rotY;
-	public float rotX;
-	public bool mouseLock = true;
-    public float originalJumpHeight;
+	public float	playerSpeed = 5.0f;
+	public float	jumpHeight = 1.5f;
+	public float	gravityValue = -9.81f;
+	public float	mouseSensitivity = 1;
+	public float	jumpBoost;
+	public float	CoyoteTime;
+	public float	rotX;
+	public float	rotY;
+	public bool		mouseLock = true;
+    public float	originalJumpHeight;
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;
@@ -52,8 +52,6 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		grounded = isGrounded();
-		//distancetoground = distanceToGround();
 		if (isGrounded())
 		{
 			airTime = 0;
@@ -92,10 +90,6 @@ public class Player_Movement : MonoBehaviour
 		// Combine horizontal and vertical movement
 		Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
 		controller.Move(finalMove * Time.deltaTime);
-		//if (!grounded && distancetoground < 0.3)
-		//{
-		//	controller.Move(new(0, -distancetoground, 0));
-		//}
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -117,19 +111,14 @@ public class Player_Movement : MonoBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
-	}
-
-	float distanceToGround()
-	{
-		RaycastHit hit;
-		Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, 500);
-		return (hit.distance);
+		grounded = isGrounded();
 	}
 
 	bool isGrounded()
 	{
-		RaycastHit  hit;
-		return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.1f));
+		//RaycastHit  hit;
+		//return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f));
+		return((controller.collisionFlags & CollisionFlags.Below) != 0);
 	}
 
 }
