@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2982127358037963863}
   - component: {fileID: 6877699546821857793}
   - component: {fileID: 7230589579379492665}
+  - component: {fileID: 7279507461222273756}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -137,6 +138,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &7279507461222273756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4482575447704772293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be76b3099f48542adb03c21f7919208b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SineWaveShader: {fileID: 4800000, guid: 16ca3aa75b0734d6fb078f7348a8c774, type: 3}
 --- !u!1 &8631900885178870248
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +165,7 @@ GameObject:
   - component: {fileID: 3398136301982214315}
   - component: {fileID: 3986651249747509042}
   - component: {fileID: 7747874694513786903}
+  - component: {fileID: 4766985503575095643}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -290,12 +305,27 @@ MonoBehaviour:
   playerSpeed: 5
   jumpHeight: 2
   gravityValue: -50
-  mouseSensitivity: 7.5
+  mouseSensitivity: 50
   jumpBoost: 5
   CoyoteTime: 0.15
-  playerVelocity: {x: 0, y: 0, z: 0}
+  rotY: 0
+  rotX: 0
+  mouseLock: 1
+  originalJumpHeight: 0
   controller: {fileID: 3986651249747509042}
   collide: {fileID: 3398136301982214315}
   cameraTransform: {fileID: 8305412633372614030}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &4766985503575095643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8631900885178870248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e809c6e0eb854c78a7b47512c9a5574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
