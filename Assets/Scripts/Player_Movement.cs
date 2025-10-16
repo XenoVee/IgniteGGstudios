@@ -7,22 +7,24 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour
 {
 	[Header("Player Control variables")]
-	public float playerSpeed = 5.0f;
-	public float jumpHeight = 1.5f;
-	public float gravityValue = -9.81f;
-	public float mouseSensitivity = 1;
-	public float jumpBoost;
-	public float CoyoteTime;
-	public float rotY;
-	public float rotX;
-	public bool mouseLock = true;
-    public float originalJumpHeight;
+	public float	playerSpeed = 5.0f;
+	public float	jumpHeight = 1.5f;
+	public float	gravityValue = -9.81f;
+	public float	mouseSensitivity = 1;
+	public float	jumpBoost;
+	public float	CoyoteTime;
+	public float	rotX;
+	public float	rotY;
+	public bool		mouseLock = true;
+    public float	originalJumpHeight;
 
-    // Private Variables (AFBLIJVEN!) 
-    private Vector3 playerVelocity;
-	private bool grounded;
-	private float airTime;
-	private bool canJump;
+	// Private Variables (AFBLIJVEN!) 
+	private Vector3	playerVelocity;
+	[SerializeField] private bool	grounded;
+	public	float	distancetoground;	
+
+	private float	airTime;
+	private bool	canJump;
 
 	[Header("Components")]
 	[SerializeField] private CharacterController controller;
@@ -50,8 +52,7 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		grounded = isGrounded();
-		if (grounded)
+		if (isGrounded())
 		{
 			airTime = 0;
 			canJump = true;
@@ -110,11 +111,14 @@ public class Player_Movement : MonoBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
+		grounded = isGrounded();
 	}
 
 	bool isGrounded()
 	{
-		return (Physics.Raycast(transform.position, -Vector3.up, collide.bounds.extents.y + 0.2f));
+		//RaycastHit  hit;
+		//return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f));
+		return((controller.collisionFlags & CollisionFlags.Below) != 0);
 	}
 
 }
