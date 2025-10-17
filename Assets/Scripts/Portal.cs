@@ -13,6 +13,8 @@ public class Portal : MonoBehaviour
 
     public Rigidbody rb;
     bool in_range = false;
+    bool timer;
+    public int I;
     private void Update()
     {
         if (in_range)
@@ -23,12 +25,24 @@ public class Portal : MonoBehaviour
 
             }
         }
+        if (timer)
+        {
+            I += 1;
+            if (I == 300)
+            {
+                SceneManager.LoadScene(Lvl);
+                I = 0;
+            }
+        }
+
+
     }
     void OnTriggerEnter(Collider touch)
     {
         if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
         {
-            SceneManager.LoadScene(Lvl);
+            timer = true;
+
 
         }
 
