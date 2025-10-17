@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 144002294270156406}
   - component: {fileID: 4575621709411912243}
   - component: {fileID: 1429227615808272111}
+  - component: {fileID: -2559561128640376766}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Portal
@@ -161,3 +162,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   amplitude: 0.1
+--- !u!114 &-2559561128640376766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845376438506211645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df84fd7e906c21a4b8d258d46b06bc9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: c3dddf7339eaddd40aa2c942e648c5ce, type: 2}
+  rendererData: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  stopWave: 0

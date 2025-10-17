@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3714332825291517214}
   - component: {fileID: 4327808762493257907}
   - component: {fileID: 64542839834884035}
+  - component: {fileID: -6394310375348946360}
   m_Layer: 0
   m_Name: WorldHeart
   m_TagString: Heart
@@ -104,6 +105,7 @@ MonoBehaviour:
   Lvl: Mees Scene
   UI: {fileID: 8009715133051516443}
   rb: {fileID: 0}
+  I: 0
 --- !u!136 &64542839834884035
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -127,6 +129,21 @@ CapsuleCollider:
   m_Height: 11.35563
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6394310375348946360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128822006707149441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df84fd7e906c21a4b8d258d46b06bc9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: c3dddf7339eaddd40aa2c942e648c5ce, type: 2}
+  rendererData: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  stopWave: 0
 --- !u!1 &7618590786860937083
 GameObject:
   m_ObjectHideFlags: 0
