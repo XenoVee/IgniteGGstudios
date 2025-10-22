@@ -18,6 +18,8 @@ public class Player_Movement : MonoBehaviour
 	public float	rotY;
 	public bool		mouseLock = true;
     public float	originalJumpHeight;
+	public float	JumpTimingLeniency;
+
 	[Header("Components")]
 	[SerializeField] private CharacterController	controller;
 	[SerializeField] private Collider				collide;
@@ -29,6 +31,7 @@ public class Player_Movement : MonoBehaviour
 	private Vector3	playerVelocity;
 
 	private float timeSinceLastJump;
+	[SerializeField] private float timeSinceLastJumpInput;
 	private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
@@ -54,13 +57,21 @@ public class Player_Movement : MonoBehaviour
 	void Update()
 	{
 		timeSinceLastJump += Time.deltaTime;
+		if (timeSinceLastJumpInput <= JumpTimingLeniency)
+		{
+			timeSinceLastJumpInput += Time.deltaTime;
+		}
+		if (jumpAction.action.triggered)
+		{
+			timeSinceLastJumpInput = 0;
+		}
 		grounded = isGrounded();
 		if (grounded)
 		{
 			airTime = 0;
 			if (timeSinceLastJump > 0.2)
 			{
-				canJump = true; 
+				canJump = true;
 			}
 			if (playerVelocity.y < 0)
 			{
@@ -79,11 +90,11 @@ public class Player_Movement : MonoBehaviour
 		}
 
 		// Read input and move player
-		if (jumpAction.action.triggered && canJump)
+		if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			canJump = false;
-			timeSinceLastJump = 0;
+			timeSinceLastJumpInput += JumpTimingLeniency;
 		}
 		if (hitHead() && playerVelocity.y > 0)
 		{
