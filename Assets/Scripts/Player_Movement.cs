@@ -146,8 +146,9 @@ public class Player_Movement : MonoBehaviour
 	{
 		RaycastHit	hit;
 		bool ret = Physics.SphereCast(transform.position, 1, Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
-		//Debug.DrawLine(transform.position, transform.position + collide.bounds.extents.y - 1 + 0.3f);
-		Debug.Log(ret);
+		Vector3 test = new(0, collide.bounds.extents.y - 1 + 0.3f, 0);
+		//Debug.DrawLine(transform.position, transform.position + test);
+		//Debug.Log(ret);
 		return (ret);
 	}
 	bool isGrounded()
