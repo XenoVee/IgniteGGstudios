@@ -16,7 +16,6 @@ public class Player_Movement : MonoBehaviour
 	public float	CoyoteTime;
 	public float	rotX;
 	public float	rotY;
-    public float	originalJumpHeight;
 	public float	JumpTimingLeniency;
 
 	[Header("Components")]
@@ -27,10 +26,10 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
-	private Vector3	playerVelocity;
-
-	private float timeSinceLastJump;
-	[SerializeField] private float timeSinceLastJumpInput;
+	private Vector3	playerVelocity;	
+	private float	timeSinceLastJump;
+	public float	originalJumpHeight;
+	private float	timeSinceLastJumpInput;
 	private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
