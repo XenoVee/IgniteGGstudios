@@ -1,6 +1,7 @@
 // This first example shows how to move using Input System Package (New)
 
 using System;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,23 +16,22 @@ public class Player_Movement : MonoBehaviour
 	public float	CoyoteTime;
 	public float	rotX;
 	public float	rotY;
-	public bool		mouseLock = true;
     public float	originalJumpHeight;
+	[Header("Components")]
+	[SerializeField] private CharacterController	controller;
+	[SerializeField] private Collider				collide;
+	[SerializeField] private Transform				cameraTransform;
+	[SerializeField] private InputActionReference	moveAction;
+	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;
-	[SerializeField] private bool	grounded;
-	public	float	distancetoground;	
 
+	private float timeSinceLastJump;
+	private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
 
-	[Header("Components")]
-	[SerializeField] private CharacterController controller;
-	[SerializeField] private Collider collide;
-	[SerializeField] private Transform cameraTransform;
-	[SerializeField] private InputActionReference moveAction;
-	[SerializeField] private InputActionReference jumpAction;
 	private void Start()
 	{
 		originalJumpHeight = jumpHeight;
@@ -52,10 +52,15 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		if (isGrounded())
+		timeSinceLastJump += Time.deltaTime;
+		grounded = isGrounded();
+		if (grounded)
 		{
 			airTime = 0;
-			canJump = true;
+			if (timeSinceLastJump > 0.2)
+			{
+				canJump = true; 
+			}
 			if (playerVelocity.y < 0)
 			{
 				playerVelocity.y = 0;
@@ -72,24 +77,30 @@ public class Player_Movement : MonoBehaviour
 			playerVelocity.y += gravityValue * Time.deltaTime;
 		}
 
-		// Jump (or not)
+		// Read input and move player
 		if (jumpAction.action.triggered && canJump)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			canJump = false;
+			timeSinceLastJump = 0;
+		}
+		if (hitHead() && playerVelocity.y > 0)
+		{
+			playerVelocity.y = 0f;
 		}
 
-		// Read input
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
-
 		float moveX = input.x;
 		float moveY = input.y;
 		Vector3 move = transform.right * moveX + transform.forward * moveY;
 		move = Vector3.ClampMagnitude(move, 1f);
 
-		// Combine horizontal and vertical movement
-		Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
-		controller.Move(finalMove * Time.deltaTime);
+		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
+		if (timeSinceLastJump > 0.2)
+		{
+			finalMove = StickToGround(finalMove);
+		}
+		controller.Move(finalMove);
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -97,28 +108,38 @@ public class Player_Movement : MonoBehaviour
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
-		if (Input.GetKey(KeyCode.Escape))
-		{
-			mouseLock = !mouseLock;
-		}
-		if (!mouseLock)
-		{
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-		}
-		else
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
-		grounded = isGrounded();
+
 	}
 
+	Vector3 StickToGround(Vector3 move)
+	{
+		RaycastHit	hit;
+		Vector3		newLocation;
+
+		newLocation = transform.position + move;
+		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 1f);
+		Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 1f));
+		if (hit.distance < 0.3 && hit.distance > 0)
+		{
+			move.y -= hit.distance;
+		}
+		return (move);
+	}
+	bool hitHead()
+	{
+		RaycastHit	hit;
+		bool ret = Physics.SphereCast(transform.position, 1, Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		Vector3 test = new(0, collide.bounds.extents.y - 1 + 0.3f, 0);
+		//Debug.DrawLine(transform.position, transform.position + test);
+		//Debug.Log(ret);
+		return (ret);
+	}
 	bool isGrounded()
 	{
-		//RaycastHit  hit;
-		//return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f));
-		return((controller.collisionFlags & CollisionFlags.Below) != 0);
+		RaycastHit	hit;
+		bool ret = Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		//Debug.DrawLine(transform.position, hit.point);
+		return (ret);
 	}
 
 }

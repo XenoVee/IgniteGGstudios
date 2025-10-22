@@ -343,6 +343,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1211084186}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -641,6 +645,10 @@ PrefabInstance:
       propertyPath: jumpBoost
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
+      propertyPath: jumpHeight
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8631900885178870248, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: m_Name
       value: Player
@@ -733,6 +741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1211084186}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -1239,6 +1251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1
@@ -1774,6 +1790,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1621069007}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -2389,6 +2409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1884991154}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -2672,6 +2696,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824809556}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &841363349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
+  m_PrefabInstance: {fileID: 84909032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00ecf7fb52d23d48b1b86576eb8294a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866331421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,6 +2823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1095131595}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -3403,6 +3442,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1734711370}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -3911,6 +3954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 659805544}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -4203,6 +4250,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1095131595}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -5226,6 +5277,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1046682832}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -5734,6 +5789,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1824499221}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -7058,6 +7117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1734711370}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -7240,6 +7303,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1410055540}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -7688,6 +7755,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1441379874}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
@@ -7762,6 +7833,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 802493711}
     m_Modifications:
+    - target: {fileID: -4586734425785700247, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 841363349}
     - target: {fileID: 1449136847668948654, guid: 0f73ce0f105cc1f4da2fba4cdd0cd60b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.78116655
