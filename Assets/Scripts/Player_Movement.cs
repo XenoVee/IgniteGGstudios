@@ -1,6 +1,7 @@
 // This first example shows how to move using Input System Package (New)
 
 using System;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,7 +30,8 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField]
 	private Vector3	playerVelocity;
 
-	private bool	grounded;
+	[SerializeField] private float timeSinceLastJump;
+	[SerializeField] private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
 
@@ -53,11 +55,15 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
+		timeSinceLastJump += Time.deltaTime;
 		grounded = isGrounded();
 		if (grounded)
 		{
 			airTime = 0;
-			canJump = true;
+			if (timeSinceLastJump > 0.2)
+			{
+				canJump = true; 
+			}
 			if (playerVelocity.y < 0)
 			{
 				playerVelocity.y = 0;
@@ -79,16 +85,21 @@ public class Player_Movement : MonoBehaviour
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			canJump = false;
+			timeSinceLastJump = 0;
 		}
-		Vector2 input = moveAction.action.ReadValue<Vector2>();
+		if (hitHead() && playerVelocity.y > 0)
+		{
+			playerVelocity.y = 0f;
+		}
 
+		Vector2 input = moveAction.action.ReadValue<Vector2>();
 		float moveX = input.x;
 		float moveY = input.y;
 		Vector3 move = transform.right * moveX + transform.forward * moveY;
 		move = Vector3.ClampMagnitude(move, 1f);
 
 		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		if (airTime == 0)
+		if (timeSinceLastJump > 0.2)
 		{
 			finalMove = StickToGround(finalMove);
 		}
@@ -124,7 +135,6 @@ public class Player_Movement : MonoBehaviour
 
 		newLocation = transform.position + move;
 		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 1f);
-		Debug.Log(hit.point);
 		Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 1f));
 		if (hit.distance < 0.3 && hit.distance > 0)
 		{
@@ -132,7 +142,14 @@ public class Player_Movement : MonoBehaviour
 		}
 		return (move);
 	}
-
+	bool hitHead()
+	{
+		RaycastHit	hit;
+		bool ret = Physics.SphereCast(transform.position, 1, Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		//Debug.DrawLine(transform.position, transform.position + collide.bounds.extents.y - 1 + 0.3f);
+		Debug.Log(ret);
+		return (ret);
+	}
 	bool isGrounded()
 	{
 		RaycastHit	hit;
