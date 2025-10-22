@@ -17,20 +17,22 @@ public class Player_Movement : MonoBehaviour
 	public float	rotY;
 	public bool		mouseLock = true;
     public float	originalJumpHeight;
+	[Header("Components")]
+	[SerializeField] private CharacterController	controller;
+	[SerializeField] private Collider				collide;
+	[SerializeField] private Transform				cameraTransform;
+	[SerializeField] private InputActionReference	moveAction;
+	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
+	[Header("If this isn't serializeFielded it breaks idk why")]
+	[SerializeField]
 	private Vector3	playerVelocity;
-	private bool	grounded;
 
+	private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
 
-	[Header("Components")]
-	[SerializeField] private CharacterController controller;
-	[SerializeField] private Collider collide;
-	[SerializeField] private Transform cameraTransform;
-	[SerializeField] private InputActionReference moveAction;
-	[SerializeField] private InputActionReference jumpAction;
 	private void Start()
 	{
 		originalJumpHeight = jumpHeight;
@@ -51,7 +53,8 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		if (isGrounded())
+		grounded = isGrounded();
+		if (grounded)
 		{
 			airTime = 0;
 			canJump = true;
@@ -85,7 +88,10 @@ public class Player_Movement : MonoBehaviour
 		move = Vector3.ClampMagnitude(move, 1f);
 
 		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		finalMove = StickToGround(finalMove);
+		if (airTime == 0)
+		{
+			finalMove = StickToGround(finalMove);
+		}
 		controller.Move(finalMove);
 
 		// Read mouse movement and rotate camera
@@ -109,7 +115,6 @@ public class Player_Movement : MonoBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
-		grounded = isGrounded();
 	}
 
 	Vector3 StickToGround(Vector3 move)
@@ -121,7 +126,7 @@ public class Player_Movement : MonoBehaviour
 		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 1f);
 		Debug.Log(hit.point);
 		Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 1f));
-		if (hit.distance < 0.3)
+		if (hit.distance < 0.3 && hit.distance > 0)
 		{
 			move.y -= hit.distance;
 		}
