@@ -8,9 +8,7 @@ public class Jumppad : MonoBehaviour
     public float jumpBoost = 10.0f;
     void Start()
     { 
-        rb = GetComponent<Rigidbody>();
     }
-    public Rigidbody rb;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

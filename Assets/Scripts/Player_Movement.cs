@@ -16,7 +16,6 @@ public class Player_Movement : MonoBehaviour
 	public float	CoyoteTime;
 	public float	rotX;
 	public float	rotY;
-	public bool		mouseLock = true;
     public float	originalJumpHeight;
 	[Header("Components")]
 	[SerializeField] private CharacterController	controller;
@@ -112,20 +111,6 @@ public class Player_Movement : MonoBehaviour
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
 
-		if (Input.GetKey(KeyCode.Escape))
-		{
-			mouseLock = !mouseLock;
-		}
-		if (!mouseLock)
-		{
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-		}
-		else
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
 	}
 
 	Vector3 StickToGround(Vector3 move)
