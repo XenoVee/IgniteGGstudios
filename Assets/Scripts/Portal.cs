@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
     public Rigidbody rb;
     bool in_range = false;
     bool timer;
-    public int I;
+    public int countDown;
     private void Update()
     {
         if (in_range)
@@ -27,11 +27,11 @@ public class Portal : MonoBehaviour
         }
         if (timer)
         {
-            I += 1;
-            if (I == 300)
+            countDown += 1;
+            if (countDown == 300)
             {
                 SceneManager.LoadScene(Lvl);
-                I = 0;
+                countDown = 0;
             }
         }
 
@@ -42,8 +42,6 @@ public class Portal : MonoBehaviour
         if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
         {
             timer = true;
-
-
         }
 
         if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
