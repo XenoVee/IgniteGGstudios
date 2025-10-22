@@ -20,8 +20,7 @@ public class Player_Movement : MonoBehaviour
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;
-	[SerializeField] private bool	grounded;
-	public	float	distancetoground;	
+	private bool	grounded;
 
 	private float	airTime;
 	private bool	canJump;
@@ -72,14 +71,12 @@ public class Player_Movement : MonoBehaviour
 			playerVelocity.y += gravityValue * Time.deltaTime;
 		}
 
-		// Jump (or not)
+		// Read input and move player
 		if (jumpAction.action.triggered && canJump)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			canJump = false;
 		}
-
-		// Read input
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
 
 		float moveX = input.x;
@@ -87,9 +84,9 @@ public class Player_Movement : MonoBehaviour
 		Vector3 move = transform.right * moveX + transform.forward * moveY;
 		move = Vector3.ClampMagnitude(move, 1f);
 
-		// Combine horizontal and vertical movement
-		Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
-		controller.Move(finalMove * Time.deltaTime);
+		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
+		finalMove = StickToGround(finalMove);
+		controller.Move(finalMove);
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -97,6 +94,7 @@ public class Player_Movement : MonoBehaviour
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
+
 		if (Input.GetKey(KeyCode.Escape))
 		{
 			mouseLock = !mouseLock;
@@ -114,11 +112,28 @@ public class Player_Movement : MonoBehaviour
 		grounded = isGrounded();
 	}
 
+	Vector3 StickToGround(Vector3 move)
+	{
+		RaycastHit	hit;
+		Vector3		newLocation;
+
+		newLocation = transform.position + move;
+		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 1f);
+		Debug.Log(hit.point);
+		Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 1f));
+		if (hit.distance < 0.3)
+		{
+			move.y -= hit.distance;
+		}
+		return (move);
+	}
+
 	bool isGrounded()
 	{
-		//RaycastHit  hit;
-		//return (Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f));
-		return((controller.collisionFlags & CollisionFlags.Below) != 0);
+		RaycastHit	hit;
+		bool ret = Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		//Debug.DrawLine(transform.position, hit.point);
+		return (ret);
 	}
 
 }
