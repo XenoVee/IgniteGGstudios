@@ -26,12 +26,10 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
-	[Header("If this isn't serializeFielded it breaks idk why")]
-	[SerializeField]
 	private Vector3	playerVelocity;
 
-	[SerializeField] private float timeSinceLastJump;
-	[SerializeField] private bool	grounded;
+	private float timeSinceLastJump;
+	private bool	grounded;
 	private float	airTime;
 	private bool	canJump;
 
