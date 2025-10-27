@@ -11,32 +11,25 @@ public class Portal : MonoBehaviour
     public string Lvl;
     public GameObject UI;
 
-    public Rigidbody rb;
     bool in_range = false;
     bool timer;
-    public int countDown;
+    public float countDown;
+
+
     private void Update()
     {
         if (in_range)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
-                SceneManager.LoadScene(Lvl);
-
-            }
-        }
-        if (timer)
-        {
-            countDown += 1;
-            if (countDown == 300)
-            {
-                SceneManager.LoadScene(Lvl);
-                countDown = 0;
+                timer = true;
             }
         }
 
-
+        Timer(timer);
     }
+
+
     void OnTriggerEnter(Collider touch)
     {
         if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
@@ -60,7 +53,18 @@ public class Portal : MonoBehaviour
             in_range = false;
         }
     }
+    void Timer(bool active)
+    {
+        if (active)
+        {
+            countDown += Time.deltaTime;
+            if (countDown >= 3.0)
+            {
+                SceneManager.LoadScene(Lvl);
+                countDown = 0;
+            }
+        }
+    }
 
-
-            
-}
+    }
+   

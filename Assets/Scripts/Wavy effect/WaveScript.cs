@@ -15,7 +15,10 @@ public class WaveScript : MonoBehaviour
     private float _shift = 0f;
     private float _amplitude = 0.05f;
     private float _shiftSpeed = 5f;
-    public int stopWave;
+    public float stopWave;
+
+    private bool inRange;
+
     void Awake()
     {
         _waveRenderFeature = rendererData.rendererFeatures.Find(f => f.name == featureName);
@@ -23,14 +26,16 @@ public class WaveScript : MonoBehaviour
 
     private void Update()
     {
-
-            stopWave += 1;
-            if (stopWave > 600)
+        stopWave += Time.deltaTime;
+        if (stopWave > 3.0)
         {
             _waveRenderFeature.SetActive(false);
             stopWave = 0;
         }
-        
+        if (inRange && Input.GetKeyDown(KeyCode.E))
+        {
+            StartWave();
+        }
         
     }
 
@@ -76,10 +81,18 @@ public class WaveScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider touch)
     {
-        if (touch.CompareTag("Player") && gameObject.CompareTag("Portal"))
+        if (touch.CompareTag("Player"))
         {
-            StartWave();
+            if (gameObject.CompareTag("Portal"))
+            {
+                StartWave();
+            }
+            if (touch.CompareTag("Player") && gameObject.CompareTag("Heart"))
+            {
+                inRange = true;
+            }
         }
+      
     }
     void OnApplicationQuit()
     {
