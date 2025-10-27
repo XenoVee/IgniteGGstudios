@@ -21,20 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Main Worlds/Main world (2).unity
     guid: 7d2138e7b2628e943908fc6fe7d5aa0e
   - enabled: 1
-    path: Assets/Scenes/Werk Scenes/Mees Scene.unity
-    guid: 68d9918bb9e22fd40b79dcbc95d14268
-  - enabled: 1
     path: Assets/Scenes/Game Scenes/Main Worlds/Main World (3).unity
     guid: 0a0af90da157dfa44ace53def1b7c031
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Dark room.unity
     guid: 4f031d7788faba64f9d01953ecedb8d2
   - enabled: 1
-    path: Assets/Scenes/Werk Scenes/Temp Scene.unity
-    guid: 0afe0734e011bfa41b94fa18b9c80150
-  - enabled: 1
-    path: Assets/Scenes/Werk Scenes/Bram's Scene.unity
-    guid: 9aa6438c34eab1b4188aca768facc323
+    path: Assets/Scenes/Game Scenes/Space.unity
+    guid: b038d7a1cbbbb6d4c8f544e9c084b6d6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
