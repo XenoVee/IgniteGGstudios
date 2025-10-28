@@ -289,22 +289,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  jumpHeight: 2
+  jumpHeight: 10
   gravityValue: -50
-  mouseSensitivity: 350
+  mouseSensitivity: 300
   jumpBoost: 5
   CoyoteTime: 0.15
   rotX: 0
   rotY: 0
-  originalJumpHeight: 0
+  JumpTimingLeniency: 0.1
   controller: {fileID: 3986651249747509042}
   collide: {fileID: 3398136301982214315}
   cameraTransform: {fileID: 8305412633372614030}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  playerVelocity: {x: 0, y: 0, z: 0}
-  timeSinceLastJump: 0
-  grounded: 0
+  originalJumpHeight: 0
 --- !u!114 &6068479928788111611
 MonoBehaviour:
   m_ObjectHideFlags: 0
