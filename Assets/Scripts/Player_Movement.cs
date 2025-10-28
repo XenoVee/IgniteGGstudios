@@ -42,13 +42,16 @@ public class Player_Movement : MonoBehaviour
 	{
 		moveAction.action.Enable();
 		jumpAction.action.Enable();
+		Debug.LogError("enable action");
 	}
 
 	private void OnDisable()
 	{
 		moveAction.action.Disable();
 		jumpAction.action.Disable();
-	}
+        Debug.LogError("disable action");
+
+    }
 
 	void Update()
 	{
@@ -62,6 +65,8 @@ public class Player_Movement : MonoBehaviour
 			timeSinceLastJumpInput = 0;
 		}
 		grounded = isGrounded();
+		Debug.LogError(grounded);
+
 		if (grounded)
 		{
 			airTime = 0;
@@ -73,6 +78,7 @@ public class Player_Movement : MonoBehaviour
 			{
 				playerVelocity.y = 0;
 			}
+			Debug.Log("canJump: " + canJump);
 		}
 		else
 		{
@@ -86,16 +92,17 @@ public class Player_Movement : MonoBehaviour
 		}
 
 		// Read input and move player
+		Debug.LogError(timeSinceLastJumpInput); 
 		if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			canJump = false;
 			timeSinceLastJumpInput += JumpTimingLeniency;
 		}
-		if (hitHead() && playerVelocity.y > 0)
-		{
-			playerVelocity.y = 0f;
-		}
+		//if (hitHead() && playerVelocity.y > 0)
+		//{
+			//playerVelocity.y = 0f;
+		//}
 
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
 		float moveX = input.x;
@@ -116,7 +123,6 @@ public class Player_Movement : MonoBehaviour
 		rotY = Mathf.Clamp(rotY, -90, 90);
 		transform.eulerAngles = new(0, rotX, 0);
 		cameraTransform.eulerAngles = new Vector3(rotY, rotX, 0f);
-
 	}
 
 	Vector3 StickToGround(Vector3 move)
