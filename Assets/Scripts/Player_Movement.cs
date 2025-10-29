@@ -25,17 +25,16 @@ public class Player_Movement : MonoBehaviour
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;	
-	private float	timeSinceLastJump;
 	public float	originalJumpHeight;
 	private float	timeSinceLastJumpInput;
-	private bool	grounded;
-	//private float	airTime;
-	//private bool	canJump;
+	[SerializeField] private bool	grounded;
+	[SerializeField] private float	airTime;
+	[SerializeField] private bool	canjump;
 
 	private void Start()
 	{
 		originalJumpHeight = jumpHeight;
-		//airTime = 0;
+		timeSinceLastJumpInput = JumpTimingLeniency;
 	}
 
 	private void OnEnable()
@@ -52,7 +51,7 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		timeSinceLastJump += Time.deltaTime;
+		grounded = isGrounded();
 		if (timeSinceLastJumpInput <= JumpTimingLeniency)
 		{
 			timeSinceLastJumpInput += Time.deltaTime;
@@ -61,41 +60,27 @@ public class Player_Movement : MonoBehaviour
 		{
 			timeSinceLastJumpInput = 0;
 		}
-		grounded = isGrounded();
-
 		if (grounded)
 		{
-			//airTime = 0;
-			//if (timeSinceLastJump > 0.2)
-			//{
-			//	canJump = true;
-			//}
 			if (playerVelocity.y < 0)
 			{
 				playerVelocity.y = 0;
 			}
+			if (grounded)
+			airTime = 0;
 		}
 		else
 		{
-			//airTime += Time.deltaTime;
-			//if (airTime > CoyoteTime)
-			//{
-			//	canJump = false;
-			//}
-			//Apply gravity
 			playerVelocity.y += gravityValue * Time.deltaTime;
+			airTime += Time.deltaTime;
 		}
 
-		// Read input and move player
-		//if (jumpAction.action.triggered == true && grounded == true)
-		//{
-		//	playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-
-		//}
-		if (timeSinceLastJumpInput < JumpTimingLeniency && grounded == true)
+			// Read input and move player
+		if (timeSinceLastJumpInput < JumpTimingLeniency && airTime <= CoyoteTime)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			timeSinceLastJumpInput += JumpTimingLeniency;
+			airTime += CoyoteTime;
 		}
 		if (hitHead() && playerVelocity.y > 0)
 		{
@@ -104,15 +89,12 @@ public class Player_Movement : MonoBehaviour
 
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
 		float moveX = input.x;
-		float moveY = input.y;
-		Vector3 move = transform.right * moveX + transform.forward * moveY;
+		float moveZ = input.y;
+		Vector3 move = transform.right * moveX + transform.forward * moveZ;
 		move = Vector3.ClampMagnitude(move, 1f);
 
 		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		//if (timeSinceLastJump > 0.2)
-		//{
-		//	finalMove = StickToGround(finalMove);
-		//}
+		finalMove = StickToGround(finalMove);
 		controller.Move(finalMove);
 
 		// Read mouse movement and rotate camera
@@ -129,9 +111,9 @@ public class Player_Movement : MonoBehaviour
 		Vector3		newLocation;
 
 		newLocation = transform.position + move;
-		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 1f);
-		Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 1f));
-		if (hit.distance < 0.3 && hit.distance > 0)
+		Physics.Raycast(newLocation - Vector3.up, -Vector3.up, out hit, 0.1f);
+		//Debug.DrawLine(newLocation - Vector3.up, newLocation - Vector3.up - (Vector3.up * 0.1f));
+		if (hit.distance < 0.1 && hit.distance > 0)
 		{
 			move.y -= hit.distance;
 		}
@@ -140,7 +122,7 @@ public class Player_Movement : MonoBehaviour
 	bool hitHead()
 	{
 		RaycastHit	hit;
-		bool ret = Physics.SphereCast(transform.position, 1, Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		bool ret = Physics.SphereCast(transform.position, 1, Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.2f);
 		Vector3 test = new(0, collide.bounds.extents.y - 1 + 0.3f, 0);
 		//Debug.DrawLine(transform.position, transform.position + test);
 		//Debug.Log(ret);
@@ -149,7 +131,7 @@ public class Player_Movement : MonoBehaviour
 	bool isGrounded()
 	{
 		RaycastHit	hit;
-		bool ret = Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.3f);
+		bool ret = Physics.SphereCast(transform.position, 1, -Vector3.up, out hit, collide.bounds.extents.y - 1 + 0.2f);
 		//Debug.DrawLine(transform.position, hit.point);
 		return (ret);
 	}
