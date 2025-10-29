@@ -25,17 +25,17 @@ public class Player_Movement : MonoBehaviour
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;	
-	private float	timeSinceLastJump;
+	//private float	timeSinceLastJump;
 	public float	originalJumpHeight;
-	private float	timeSinceLastJumpInput;
+	//private float	timeSinceLastJumpInput;
 	private bool	grounded;
-	private float	airTime;
-	private bool	canJump;
+	//private float	airTime;
+	//private bool	canJump;
 
 	private void Start()
 	{
 		originalJumpHeight = jumpHeight;
-		airTime = 0;
+		//airTime = 0;
 	}
 
 	private void OnEnable()
@@ -52,24 +52,24 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		timeSinceLastJump += Time.deltaTime;
-		if (timeSinceLastJumpInput <= JumpTimingLeniency)
-		{
-			timeSinceLastJumpInput += Time.deltaTime;
-		}
-		if (jumpAction.action.triggered)
-		{
-			timeSinceLastJumpInput = 0;
-		}
+		//timeSinceLastJump += Time.deltaTime;
+		//if (timeSinceLastJumpInput <= JumpTimingLeniency)
+		//{
+		//	timeSinceLastJumpInput += Time.deltaTime;
+		//}
+		//if (jumpAction.action.triggered)
+		//{
+		//	timeSinceLastJumpInput = 0;
+		//}
 		grounded = isGrounded();
 
 		if (grounded)
 		{
-			airTime = 0;
-			if (timeSinceLastJump > 0.2)
-			{
-				canJump = true;
-			}
+			//airTime = 0;
+			//if (timeSinceLastJump > 0.2)
+			//{
+			//	canJump = true;
+			//}
 			if (playerVelocity.y < 0)
 			{
 				playerVelocity.y = 0;
@@ -77,22 +77,27 @@ public class Player_Movement : MonoBehaviour
 		}
 		else
 		{
-			airTime += Time.deltaTime;
-			if (airTime > CoyoteTime)
-			{
-				canJump = false;
-			}
+			//airTime += Time.deltaTime;
+			//if (airTime > CoyoteTime)
+			//{
+			//	canJump = false;
+			//}
 			//Apply gravity
 			playerVelocity.y += gravityValue * Time.deltaTime;
 		}
 
 		// Read input and move player
-		if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
+		if (jumpAction.action.triggered == true && grounded == true)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-			canJump = false;
-			timeSinceLastJumpInput += JumpTimingLeniency;
+
 		}
+		//if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
+		//{
+		//	playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+		//	canJump = false;
+		//	timeSinceLastJumpInput += JumpTimingLeniency;
+		//}
 		//if (hitHead() && playerVelocity.y > 0)
 		//{
 			//playerVelocity.y = 0f;
@@ -105,10 +110,10 @@ public class Player_Movement : MonoBehaviour
 		move = Vector3.ClampMagnitude(move, 1f);
 
 		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		if (timeSinceLastJump > 0.2)
-		{
-			finalMove = StickToGround(finalMove);
-		}
+		//if (timeSinceLastJump > 0.2)
+		//{
+		//	finalMove = StickToGround(finalMove);
+		//}
 		controller.Move(finalMove);
 
 		// Read mouse movement and rotate camera
