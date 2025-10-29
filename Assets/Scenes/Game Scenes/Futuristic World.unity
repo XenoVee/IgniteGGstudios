@@ -19651,11 +19651,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: rotX
-      value: -240
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: mouseSensitivity
-      value: 800
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: JumpTimingLeniency
