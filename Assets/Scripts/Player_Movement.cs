@@ -42,15 +42,12 @@ public class Player_Movement : MonoBehaviour
 	{
 		moveAction.action.Enable();
 		jumpAction.action.Enable();
-		Debug.LogError("enable action");
 	}
 
 	private void OnDisable()
 	{
 		moveAction.action.Disable();
 		jumpAction.action.Disable();
-        Debug.LogError("disable action");
-
     }
 
 	void Update()
@@ -65,7 +62,6 @@ public class Player_Movement : MonoBehaviour
 			timeSinceLastJumpInput = 0;
 		}
 		grounded = isGrounded();
-		Debug.LogError(grounded);
 
 		if (grounded)
 		{
@@ -78,7 +74,6 @@ public class Player_Movement : MonoBehaviour
 			{
 				playerVelocity.y = 0;
 			}
-			Debug.Log("canJump: " + canJump);
 		}
 		else
 		{
@@ -92,7 +87,6 @@ public class Player_Movement : MonoBehaviour
 		}
 
 		// Read input and move player
-		Debug.LogError(timeSinceLastJumpInput); 
 		if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
 		{
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
