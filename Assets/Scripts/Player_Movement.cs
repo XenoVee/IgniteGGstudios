@@ -25,9 +25,9 @@ public class Player_Movement : MonoBehaviour
 
 	// Private Variables (AFBLIJVEN!) 
 	private Vector3	playerVelocity;	
-	//private float	timeSinceLastJump;
+	private float	timeSinceLastJump;
 	public float	originalJumpHeight;
-	//private float	timeSinceLastJumpInput;
+	private float	timeSinceLastJumpInput;
 	private bool	grounded;
 	//private float	airTime;
 	//private bool	canJump;
@@ -52,15 +52,15 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
-		//timeSinceLastJump += Time.deltaTime;
-		//if (timeSinceLastJumpInput <= JumpTimingLeniency)
-		//{
-		//	timeSinceLastJumpInput += Time.deltaTime;
-		//}
-		//if (jumpAction.action.triggered)
-		//{
-		//	timeSinceLastJumpInput = 0;
-		//}
+		timeSinceLastJump += Time.deltaTime;
+		if (timeSinceLastJumpInput <= JumpTimingLeniency)
+		{
+			timeSinceLastJumpInput += Time.deltaTime;
+		}
+		if (jumpAction.action.triggered)
+		{
+			timeSinceLastJumpInput = 0;
+		}
 		grounded = isGrounded();
 
 		if (grounded)
@@ -87,21 +87,20 @@ public class Player_Movement : MonoBehaviour
 		}
 
 		// Read input and move player
-		if (jumpAction.action.triggered == true && grounded == true)
-		{
-			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-
-		}
-		//if (timeSinceLastJumpInput < JumpTimingLeniency && canJump)
+		//if (jumpAction.action.triggered == true && grounded == true)
 		//{
 		//	playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-		//	canJump = false;
-		//	timeSinceLastJumpInput += JumpTimingLeniency;
+
 		//}
-		//if (hitHead() && playerVelocity.y > 0)
-		//{
-			//playerVelocity.y = 0f;
-		//}
+		if (timeSinceLastJumpInput < JumpTimingLeniency && grounded == true)
+		{
+			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+			timeSinceLastJumpInput += JumpTimingLeniency;
+		}
+		if (hitHead() && playerVelocity.y > 0)
+		{
+			playerVelocity.y = 0f;
+		}
 
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
 		float moveX = input.x;

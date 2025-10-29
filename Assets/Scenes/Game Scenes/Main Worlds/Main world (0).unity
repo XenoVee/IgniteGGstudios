@@ -1033,7 +1033,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: JumpTimingLeniency
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8631900885178870248, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: m_Name
