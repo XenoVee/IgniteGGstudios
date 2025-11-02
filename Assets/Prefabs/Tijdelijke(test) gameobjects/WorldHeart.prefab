@@ -104,8 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lvl: Mees Scene
   UI: {fileID: 8009715133051516443}
-  rb: {fileID: 0}
-  I: 0
+  countDown: 0
 --- !u!136 &64542839834884035
 CapsuleCollider:
   m_ObjectHideFlags: 0
