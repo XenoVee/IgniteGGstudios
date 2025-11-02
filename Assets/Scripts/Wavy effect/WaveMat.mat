@@ -115,7 +115,7 @@ Material:
     - _ZWrite: 1
     - _amplitude: 0.05
     - _frequency: 4
-    - _shift: 28.59423
+    - _shift: 15.09453
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

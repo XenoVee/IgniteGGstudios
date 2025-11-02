@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 3986651249747509042}
   - component: {fileID: 7747874694513786903}
   - component: {fileID: 6068479928788111611}
+  - component: {fileID: 204293988613801658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,7 +292,7 @@ MonoBehaviour:
   playerSpeed: 5
   jumpHeight: 2
   gravityValue: -50
-  mouseSensitivity: 300
+  mouseSensitivity: 800
   jumpBoost: 5
   CoyoteTime: 0.15
   rotX: 90
@@ -303,6 +304,9 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   originalJumpHeight: 0
+  grounded: 0
+  airTime: 0
+  canjump: 0
 --- !u!114 &6068479928788111611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,5 +317,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49f2fad7b943e32479c86164ac2aed99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseLocked: 0
+--- !u!114 &204293988613801658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8631900885178870248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9498a2cca6c3c1446a459fb732eff464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

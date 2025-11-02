@@ -3,7 +3,7 @@ using UnityEngine;
 public class MouseLock : MonoBehaviour
 {
 
-     bool mouseLocked = true;
+     [SerializeField] private bool mouseLocked = true;
     
 
     void Update()
