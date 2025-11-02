@@ -12,10 +12,8 @@ public class Deathbox : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			Debug.Log("DO SOMETHING!!!");
-			movementScript.test();
-			//GameManager.Instance.player.GetComponent<Player_Movement>().respawnPos = respawnPos;
-			//GameManager.Instance.player.GetComponent<Player_Movement>().isRespawning = true;
+			movementScript.respawnPos = respawnPos;
+			movementScript.respawn();
 		}
 	}
 
@@ -23,9 +21,9 @@ public class Deathbox : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			Debug.LogWarning("FUCKING TELEPORT");
-			//GameManager.Instance.player.GetComponent<Player_Movement>().respawnPos = respawnPos;
-			//GameManager.Instance.player.GetComponent<Player_Movement>().isRespawning = true;
+
+			movementScript.respawnPos = respawnPos;
+			movementScript.respawn();
 		}
 	}
 }
