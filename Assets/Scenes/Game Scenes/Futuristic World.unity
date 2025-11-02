@@ -19921,7 +19921,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5346590642621608650, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: rotX
@@ -19929,7 +19929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: mouseSensitivity
-      value: 150
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 7747874694513786903, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
       propertyPath: JumpTimingLeniency
