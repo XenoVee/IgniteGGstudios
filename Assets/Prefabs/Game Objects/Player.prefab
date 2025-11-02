@@ -293,17 +293,19 @@ MonoBehaviour:
   jumpHeight: 2
   gravityValue: -50
   mouseSensitivity: 800
-  jumpBoost: 5
-  CoyoteTime: 0.15
   rotX: 90
   rotY: 0
+  CoyoteTime: 0.15
   JumpTimingLeniency: 0.1
+  respawnMovementLockout: 1
   controller: {fileID: 3986651249747509042}
   collide: {fileID: 3398136301982214315}
   cameraTransform: {fileID: 8305412633372614030}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   originalJumpHeight: 0
+  respawnPos: {x: 0, y: 0, z: 0}
+  isRespawning: 0
   grounded: 0
   airTime: 0
   canjump: 0
@@ -319,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f2fad7b943e32479c86164ac2aed99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLocked: 0
+  mouseLocked: 1
 --- !u!114 &204293988613801658
 MonoBehaviour:
   m_ObjectHideFlags: 0
