@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f2fad7b943e32479c86164ac2aed99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLocked: 0
+  mouseLocked: 1
 --- !u!114 &204293988613801658
 MonoBehaviour:
   m_ObjectHideFlags: 0

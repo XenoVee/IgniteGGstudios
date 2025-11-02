@@ -4,15 +4,20 @@ public class MouseLock : MonoBehaviour
 {
 
      [SerializeField] private bool mouseLocked = true;
-    
 
-    void Update()
-    {
-      
+
+	void Update()
+	{
+
 		if (Input.GetKey(KeyCode.Escape))
 		{
 			mouseLocked = !mouseLocked;
 		}
+
+	}
+
+    void LockMouse()
+    {
 		if (!mouseLocked)
 		{
 			Cursor.lockState = CursorLockMode.None;
@@ -22,6 +27,6 @@ public class MouseLock : MonoBehaviour
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-		}  
+		} 
     }
 }
