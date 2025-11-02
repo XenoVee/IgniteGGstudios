@@ -93,15 +93,18 @@ public class Player_Movement : MonoBehaviour
 			transform.position = respawnPos;
 			isRespawning = false;
 		}
-		Vector2 input = moveAction.action.ReadValue<Vector2>();
-		float moveX = input.x;
-		float moveZ = input.y;
-		Vector3 move = transform.right * moveX + transform.forward * moveZ;
-		move = Vector3.ClampMagnitude(move, 1f);
+		else
+		{
+			Vector2 input = moveAction.action.ReadValue<Vector2>();
+			float moveX = input.x;
+			float moveZ = input.y;
+			Vector3 move = transform.right * moveX + transform.forward * moveZ;
+			move = Vector3.ClampMagnitude(move, 1f);
 
-		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		finalMove = StickToGround(finalMove);
-		controller.Move(finalMove);
+			Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
+			finalMove = StickToGround(finalMove);
+			controller.Move(finalMove);
+		}
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -124,6 +127,11 @@ public class Player_Movement : MonoBehaviour
 			move.y -= hit.distance;
 		}
 		return (move);
+	}
+
+	public void test()
+	{
+		Debug.Log("test");
 	}
 	bool hitHead()
 	{
