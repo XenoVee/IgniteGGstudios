@@ -6,15 +6,16 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour
 {
 	[Header("Player Control variables")]
-	public float	playerSpeed = 5.0f;
-	public float	jumpHeight = 1.5f;
-	public float	gravityValue = -9.81f;
-	public float	mouseSensitivity = 1;
-	public float	jumpBoost;
-	public float	CoyoteTime;
-	public float	rotX;
-	public float	rotY;
-	public float	JumpTimingLeniency;
+	[SerializeField] private float	playerSpeed				= 5.0f;
+	[SerializeField] public float	jumpHeight				= 1.5f;
+	[SerializeField] private float	gravityValue			= -9.81f;
+	[SerializeField] private float	mouseSensitivity		= 1;
+	[SerializeField] private float	rotX					= 0;
+	[SerializeField] private float	rotY					= 0;
+	//[SerializeField] private float	jumpBoost				= 2;
+	[SerializeField] private float	CoyoteTime				= 0.1f;
+	[SerializeField] private float	JumpTimingLeniency		= 0.1f;
+	[SerializeField] private float	respawnMovementLockout	= 1;
 
 	[Header("Components")]
 	[SerializeField] private CharacterController	controller;
@@ -24,12 +25,15 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
-	private Vector3	playerVelocity;	
-	public float	originalJumpHeight;
-	private float	timeSinceLastJumpInput;
-	[SerializeField] private bool	grounded;
-	[SerializeField] private float	airTime;
-	[SerializeField] private bool	canjump;
+	private Vector3						playerVelocity;	
+	public float						originalJumpHeight;
+	private float						timeSinceLastJumpInput;
+	private float						timeSinceRespawn;
+	[HideInInspector] public Vector3	respawnPos;
+	[HideInInspector] public bool		isRespawning;
+	[SerializeField] private bool		grounded;
+	[SerializeField] private float		airTime;
+	[SerializeField] private bool		canjump;
 
 	private void Start()
 	{
@@ -86,16 +90,27 @@ public class Player_Movement : MonoBehaviour
 		{
 			playerVelocity.y = 0f;
 		}
+		if (isRespawning)
+		{
+			transform.position = respawnPos;
+			timeSinceRespawn += Time.deltaTime;
+			if (timeSinceRespawn >= respawnMovementLockout)
+			{
+				isRespawning = false;
+			}
+		}
+		else
+		{
+			Vector2 input = moveAction.action.ReadValue<Vector2>();
+			float moveX = input.x;
+			float moveZ = input.y;
+			Vector3 move = transform.right * moveX + transform.forward * moveZ;
+			move = Vector3.ClampMagnitude(move, 1f);
 
-		Vector2 input = moveAction.action.ReadValue<Vector2>();
-		float moveX = input.x;
-		float moveZ = input.y;
-		Vector3 move = transform.right * moveX + transform.forward * moveZ;
-		move = Vector3.ClampMagnitude(move, 1f);
-
-		Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
-		finalMove = StickToGround(finalMove);
-		controller.Move(finalMove);
+			Vector3 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector3.up)) * Time.deltaTime;
+			finalMove = StickToGround(finalMove);
+			controller.Move(finalMove);
+		}
 
 		// Read mouse movement and rotate camera
 		rotX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -119,6 +134,13 @@ public class Player_Movement : MonoBehaviour
 		}
 		return (move);
 	}
+
+	public void respawn()
+	{
+		isRespawning = true;
+		timeSinceRespawn = 0;
+	}
+
 	bool hitHead()
 	{
 		RaycastHit	hit;
