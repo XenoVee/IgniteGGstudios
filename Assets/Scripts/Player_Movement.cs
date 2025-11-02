@@ -24,12 +24,14 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private InputActionReference	jumpAction;
 
 	// Private Variables (AFBLIJVEN!) 
-	private Vector3	playerVelocity;	
-	public float	originalJumpHeight;
-	private float	timeSinceLastJumpInput;
-	[SerializeField] private bool	grounded;
-	[SerializeField] private float	airTime;
-	[SerializeField] private bool	canjump;
+	private Vector3						playerVelocity;	
+	public float						originalJumpHeight;
+	private float						timeSinceLastJumpInput;
+	[HideInInspector] public Vector3	respawnPos;
+	[HideInInspector] public bool		isRespawning;
+	[SerializeField] private bool		grounded;
+	[SerializeField] private float		airTime;
+	[SerializeField] private bool		canjump;
 
 	private void Start()
 	{
@@ -86,7 +88,11 @@ public class Player_Movement : MonoBehaviour
 		{
 			playerVelocity.y = 0f;
 		}
-
+		if (isRespawning)
+		{
+			transform.position = respawnPos;
+			isRespawning = false;
+		}
 		Vector2 input = moveAction.action.ReadValue<Vector2>();
 		float moveX = input.x;
 		float moveZ = input.y;
