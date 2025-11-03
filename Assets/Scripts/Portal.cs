@@ -58,7 +58,7 @@ public class Portal : MonoBehaviour
         if (active)
         {
             countDown += Time.deltaTime;
-            if (countDown >= 3.0)
+            if (countDown >= 3.1)
             {
                 SceneManager.LoadScene(Lvl);
                 countDown = 0;

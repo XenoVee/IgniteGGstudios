@@ -26,7 +26,11 @@ public class WaveScript : MonoBehaviour
 
     private void Update()
     {
-        stopWave += Time.deltaTime;
+        if (wave)
+        {
+
+            stopWave += Time.deltaTime;
+        }
         if (stopWave > 3.0)
         {
             _waveRenderFeature.SetActive(false);
