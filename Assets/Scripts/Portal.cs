@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour
     bool in_range = false;
     bool timer;
     public float countDown;
+    public float doneCounting = 3.0f;
 
 
     private void Update()
@@ -58,7 +59,7 @@ public class Portal : MonoBehaviour
         if (active)
         {
             countDown += Time.deltaTime;
-            if (countDown >= 3.0)
+            if (countDown >= doneCounting)
             {
                 SceneManager.LoadScene(Lvl);
                 countDown = 0;
