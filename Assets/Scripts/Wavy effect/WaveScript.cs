@@ -22,6 +22,7 @@ public class WaveScript : MonoBehaviour
     void Awake()
     {
         _waveRenderFeature = rendererData.rendererFeatures.Find(f => f.name == featureName);
+        _waveRenderFeature.SetActive(false);
     }
 
     private void Update()
