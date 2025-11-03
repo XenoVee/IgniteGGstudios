@@ -42,7 +42,6 @@ public class Portal : MonoBehaviour
 
             UI.SetActive(true);
             in_range = true;
-            timer = true;
         }
 
     }
