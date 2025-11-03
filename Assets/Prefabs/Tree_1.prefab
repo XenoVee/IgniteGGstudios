@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6962725646751885616}
   - component: {fileID: 6042624027261289996}
   - component: {fileID: 4932101466465388016}
-  - component: {fileID: 1061675906277303649}
   m_Layer: 0
   m_Name: Tree_1
   m_TagString: Untagged
@@ -27,13 +26,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628760829629839688}
-  m_LocalRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: 0.7070957, y: -0.003969116, z: 0.003969116, w: 0.7070957}
   m_LocalPosition: {x: 0, y: 0, z: 23.497103}
   m_LocalScale: {x: 1, y: 1, z: 1.56}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 180.643}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9.080149, y: 15.783044}
@@ -70,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0d807e5c39dd326498f7fbb7b9bea239, type: 2}
+  - {fileID: 2100000, guid: 18e39354b7608a6438ca16b13870120b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,11 +113,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!222 &1061675906277303649
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628760829629839688}
-  m_CullTransparentMesh: 1
