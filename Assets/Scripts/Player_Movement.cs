@@ -144,10 +144,20 @@ public class Player_Movement : MonoBehaviour
 		return (move);
 	}
 
-	public void respawn()
+	public void respawn(Collider other)
 	{
+		Deathbox deathPlaneScript = other.gameObject.GetComponent<Deathbox>();
+		respawnPos = deathPlaneScript.respawnPos;
 		isRespawning = true;
 		timeSinceRespawn = 0;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("DeathPlane"))
+		{
+			respawn(other);
+		}
 	}
 
 	bool hitHead()

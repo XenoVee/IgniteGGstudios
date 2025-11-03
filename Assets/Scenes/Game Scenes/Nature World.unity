@@ -25101,7 +25101,7 @@ GameObject:
   - component: {fileID: 965455830}
   m_Layer: 2
   m_Name: DeathPlane
-  m_TagString: Untagged
+  m_TagString: DeathPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27198,7 +27198,7 @@ GameObject:
   - component: {fileID: 1234345920}
   m_Layer: 2
   m_Name: DeathPlane
-  m_TagString: Untagged
+  m_TagString: DeathPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
