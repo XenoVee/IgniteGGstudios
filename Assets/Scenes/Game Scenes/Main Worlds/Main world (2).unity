@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3670c35f1fff1f84b9693d243d9896bc, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -9111,6 +9111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mirror Dark Room (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1281622227376786296, guid: 21be6da791db0044bac043f4190a15b1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e8442dd275001c4f9d167e8d1b8c962, type: 2}
     - target: {fileID: 4052235982772697780, guid: 21be6da791db0044bac043f4190a15b1, type: 3}
       propertyPath: m_Mesh
       value: 
