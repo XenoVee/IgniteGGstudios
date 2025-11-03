@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &83417815
 AudioSource:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -599,6 +599,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1ea20aa8f630234e9a976a0fad4c236, type: 3}
+--- !u!1 &828180602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4128822006707149441, guid: f5b4a327bd0c263409aff09d2f8a6cc8, type: 3}
+  m_PrefabInstance: {fileID: 1210077531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &828180603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828180602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc36a6fe550b184fa5ca36d265092ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringing: {fileID: 1421670022}
+  convo: {fileID: 83417814}
 --- !u!1001 &1210077531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,10 +678,17 @@ PrefabInstance:
       propertyPath: Lvl
       value: Main World (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4327808762493257907, guid: f5b4a327bd0c263409aff09d2f8a6cc8, type: 3}
+      propertyPath: doneCounting
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4128822006707149441, guid: f5b4a327bd0c263409aff09d2f8a6cc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 828180603}
   m_SourcePrefab: {fileID: 100100000, guid: f5b4a327bd0c263409aff09d2f8a6cc8, type: 3}
 --- !u!1 &1220157496
 GameObject:
@@ -2280,7 +2306,7 @@ GameObject:
   - component: {fileID: 1421670024}
   - component: {fileID: 1421670023}
   m_Layer: 0
-  m_Name: Phone Rining
+  m_Name: Phone Ringing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2488,5 +2514,5 @@ SceneRoots:
   - {fileID: 1210077531}
   - {fileID: 2137762038}
   - {fileID: 1379094727}
-  - {fileID: 1421670024}
   - {fileID: 83417816}
+  - {fileID: 1421670024}

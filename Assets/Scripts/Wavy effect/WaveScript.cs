@@ -16,6 +16,7 @@ public class WaveScript : MonoBehaviour
     private float _amplitude = 0.05f;
     private float _shiftSpeed = 5f;
     public float stopWave;
+    public float endWave = 3.0f;
 
     private bool inRange;
 
@@ -32,7 +33,7 @@ public class WaveScript : MonoBehaviour
 
             stopWave += Time.deltaTime;
         }
-        if (stopWave > 3.0)
+        if (stopWave > endWave)
         {
             _waveRenderFeature.SetActive(false);
             stopWave = 0;
