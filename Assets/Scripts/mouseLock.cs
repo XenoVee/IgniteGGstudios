@@ -13,6 +13,7 @@ public class MouseLock : MonoBehaviour
 		{
 			mouseLocked = !mouseLocked;
 		}
+		LockMouse();
 
 	}
 
