@@ -11,8 +11,7 @@ public class Player_Movement : MonoBehaviour
 	[SerializeField] private float	mouseSensitivity		= 1;
 	[SerializeField] private float	rotX					= 0;
 	[SerializeField] private float	rotY					= 0;
-	[SerializeField] private float sprintSpeed				= 8.0f;
-	//[SerializeField] private float	jumpBoost				= 2;
+	[SerializeField] private float	sprintSpeed				= 8.0f;
 	[SerializeField] private float	CoyoteTime				= 0.1f;
 	[SerializeField] private float	JumpTimingLeniency		= 0.1f;
 	[SerializeField] private float	respawnMovementLockout	= 1;
@@ -30,6 +29,7 @@ public class Player_Movement : MonoBehaviour
 	private float						timeSinceLastJumpInput;
 	private float						timeSinceRespawn;
 	private float						speedSave;
+	private float						timeSinceJump;
 	[HideInInspector] public Vector3	respawnPos;
 	[HideInInspector] public bool		isRespawning;
 	[SerializeField] private bool		grounded;
@@ -57,6 +57,10 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
 	{
+		if (timeSinceJump < 0.1)
+		{
+			timeSinceJump += Time.deltaTime;
+		}
 		grounded = isGrounded();
 		if (timeSinceLastJumpInput <= JumpTimingLeniency)
 		{
@@ -94,6 +98,7 @@ public class Player_Movement : MonoBehaviour
 			playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 			timeSinceLastJumpInput += JumpTimingLeniency;
 			airTime += CoyoteTime;
+			timeSinceJump = 0;
 		}
 		if (hitHead() && playerVelocity.y > 0)
 		{
