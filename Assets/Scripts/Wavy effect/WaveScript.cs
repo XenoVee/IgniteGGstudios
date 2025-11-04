@@ -30,7 +30,6 @@ public class WaveScript : MonoBehaviour
     {
         if (wave)
         {
-
             stopWave += Time.deltaTime;
         }
         if (stopWave > endWave)
@@ -101,6 +100,10 @@ public class WaveScript : MonoBehaviour
       
     }
     void OnApplicationQuit()
+    {
+        _waveRenderFeature.SetActive(false);
+    }
+    void OnDisable()
     {
         _waveRenderFeature.SetActive(false);
     }
