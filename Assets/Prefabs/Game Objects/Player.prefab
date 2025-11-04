@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 3986651249747509042}
   - component: {fileID: 7747874694513786903}
   - component: {fileID: 6068479928788111611}
-  - component: {fileID: 204293988613801658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -295,6 +294,7 @@ MonoBehaviour:
   mouseSensitivity: 800
   rotX: 90
   rotY: 0
+  sprintSpeed: 8
   CoyoteTime: 0.15
   JumpTimingLeniency: 0.1
   respawnMovementLockout: 0.05
@@ -322,15 +322,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseLocked: 1
---- !u!114 &204293988613801658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8631900885178870248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9498a2cca6c3c1446a459fb732eff464, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
